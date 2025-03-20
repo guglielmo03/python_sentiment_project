@@ -4,7 +4,7 @@ sys.path.append(os.path.abspath('..'))  # Adds the parent directory to sys.path
 
 import logging
 from src import config
-from src.load_data import load_data
+from src.load_data import load_data # STO RICHIAMANDO IL FILE LOAD DATA IN SRC E CHIAMO LA FUNZIONE load_data
 from src.preprocess import preprocess_data
 from src.make_model import train_model
 # from src.evaluation import evaluate_model
@@ -28,7 +28,7 @@ def main():
     logging.info("Training the model...")
     train_model()
 
-    # # Step 4: Evaluate model performance
+    '''# # Step 4: Evaluate model performance
     # logging.info("Evaluating the model...")
     # evaluate_model(model, vectorizer, config.DATABASE_PATH)
 
@@ -40,7 +40,7 @@ def main():
     # logging.info("Saving predictions to database...")
     # save_predictions(predictions, config.DATABASE_PATH)
 
-    # logging.info("Sentiment Analysis Pipeline completed successfully!")
+    # logging.info("Sentiment Analysis Pipeline completed successfully!")'''
 
 if __name__ == "__main__":
     main()
