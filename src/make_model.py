@@ -15,7 +15,7 @@ import logging
 #logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 
 
-def load_data():
+def load_data(): # crea un dataframe partendo da sqlLite
     """Loads data from the SQLite database."""
     conn = sqlite3.connect(config.DATABASE_PATH)
     query = f"SELECT cleaned_text, sentiment FROM {config.PROCESSED_TABLE}"
@@ -33,7 +33,7 @@ def train_model(grid_search=False):
 
     # Feature extraction
     vectorizer = TfidfVectorizer()
-    X = vectorizer.fit_transform(df['cleaned_text'])
+    X = vectorizer.fit_transform(df['cleaned_text']) # usa TF-IDF per trasformare le parole in vettori
     y = df['sentiment']
 
     # Train-test split (preserve indices)

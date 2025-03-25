@@ -23,9 +23,9 @@ def load_data():
     e1 = e1[['text', 'sentiment']]
     e2 = e2[['text', 'sentiment']]
     fifa = fifa[['Tweet', 'Sentiment']]
-    fifa.columns = ['text', 'sentiment']
+    fifa.columns = ['text', 'sentiment'] # rinomina i nomi delle colonne
     generic = generic[['text', 'sentiment']]
-    df = pd.concat([e1, e2, fifa, generic])
+    df = pd.concat([e1, e2, fifa, generic]) # li mette uno sotto l'altro
     df.reset_index(drop=True, inplace=True)
     
 

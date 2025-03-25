@@ -18,6 +18,7 @@ def preprocess_data():
 
 
     # Download necessary resources
+    # dati che servono a nltk per fare certe cose (nltk = natual language tool kit)
     nltk.download('punkt')
     nltk.download('punkt_tab')
     nltk.download('stopwords')
@@ -36,7 +37,8 @@ def preprocess_data():
         text = text.lower()
 
         # Tokenize words
-        words = word_tokenize(text)
+        words = word_tokenize(text) # prendiamo testo e cerchiamo di arrivare alle parole
+        # riesce fare uno split() ma non solo con spazio, lo fa con trattino, virgola... è uno split più intelligente
 
         # Remove URLs
         words = [word for word in words if not urlparse(word).scheme]  # Checks if it's a URL
@@ -54,10 +56,10 @@ def preprocess_data():
         words = [emoji.demojize(word).replace("_", " ") for word in words]
 
         # Remove stopwords
-        words = [word for word in words if word not in stop_words]
+        words = [word for word in words if word not in stop_words] # tipo congiunzioni, preposizioni...
 
         # Lemmatize words
-        words = [lemmatizer.lemmatize(word) for word in words]
+        words = [lemmatizer.lemmatize(word) for word in words] # mi mette tutte le parole al singolare e i verbi all'infinito, anche con gli aggettivi
 
         # Reconstruct cleaned text
         return " ".join(words)
