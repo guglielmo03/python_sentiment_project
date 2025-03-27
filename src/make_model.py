@@ -8,6 +8,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 import os
 import sys
+import pickle
 sys.path.append(os.path.abspath('..'))  # Adds the parent directory to sys.path
 
 import logging
@@ -26,7 +27,7 @@ def load_data(): # crea un dataframe partendo da sqlLite
 
 def train_model(grid_search=False):
     """Trains a Random Forest model with GridSearchCV and saves evaluation metrics to CSV."""
-    df = load_data()
+    df = load_data().head(100) # prendiamo solo un sottoinsieme del dataset (di 100 righe)
 
     # Save original indices before vectorization
     df_indices = df.index
@@ -59,6 +60,10 @@ def train_model(grid_search=False):
         rf = RandomForestClassifier()
         rf.fit(X_train, y_train)
         y_pred = rf.predict(X_test)
+
+    # salviamo il modello
+    with open(os.path.join(config.MODELS_PATH, "random_forest.pickle"), "wb") as file:
+        pickle.dump(rf, file)
 
     # Create a DataFrame for the test set with predictions
     test_df = df.loc[test_idx].copy()  # Copy test set rows
