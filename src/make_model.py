@@ -37,6 +37,9 @@ def train_model(grid_search=False):
     X = vectorizer.fit_transform(df['cleaned_text']) # usa TF-IDF per trasformare le parole in vettori
     y = df['sentiment']
 
+    with open(f"{config.MODELS_PATH}vectorizer.pickle", "wb") as f: # wb: write binary
+        pickle.dump(vectorizer, f)
+
     # Train-test split (preserve indices)
     X_train, X_test, y_train, y_test, train_idx, test_idx = train_test_split(
         X, y, df_indices, test_size=0.2, random_state=42
