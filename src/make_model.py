@@ -27,7 +27,7 @@ def load_data(): # crea un dataframe partendo da sqlLite
 
 def train_model(grid_search=False):
     """Trains a Random Forest model with GridSearchCV and saves evaluation metrics to CSV."""
-    df = load_data().head(100) # prendiamo solo un sottoinsieme del dataset (di 100 righe)
+    df = load_data().head(100) # prendiamo solo un sottoinsieme del dataset (di 100 righe). Sarebbe meglio fare sample
 
     # Save original indices before vectorization
     df_indices = df.index

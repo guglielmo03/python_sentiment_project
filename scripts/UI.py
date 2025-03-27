@@ -19,7 +19,7 @@ user_input = st.text_ area("Enter text to classify", "")
 
 # Predict when button is clicked
 if st.button("Classify"):
-    if user_input.strip() ==
+    if user_input.strip() == "":
         st.warning("Please enter some text.")
     else:
         # Transform input and predict
